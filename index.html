@@ -7,7 +7,11 @@ var win = gui.Window.get();
 
 
 var two = gui.Window.open("./two.html");
-
+var $ = function(id){
+  return document.getElementById(id);
+}
+var $test =  $("test");
+var $timeout = $("timeout");
 // // listening end event from child window
 // two.on("end", function() {
 
@@ -27,17 +31,17 @@ var two = gui.Window.open("./two.html");
 // block two window render process;
 for (var i = 0; i < 1000; i++) {
   if (i === 0 || i === 999) {
-    document.getElementById("test").innerHTML += "<br/>index" + i + " " + Date.now();
+    $test.innerHTML += "<br/>index" + i + " " + Date.now();
   } else {
-    document.getElementById("test").innerHTML += "<span></span>";
+    $test.innerHTML += "<span></span>";
   }
 }
 setTimeout(function(){
   for (var i = 0; i < 2000; i++) {
   if (i === 0 || i === 1999) {
-    document.getElementById("timeout").innerHTML += "<br/>timeout" + i + " " + Date.now();
+    $timeout.innerHTML += "<br/>timeout" + i + " " + Date.now();
   } else {
-    document.getElementById("timeout").innerHTML += "<span></span>";
+    $timeout.innerHTML += "<span></span>";
   }
 }
 },100);
