@@ -1,0 +1,39 @@
+<div id="test"></div>
+<div id="parent"></div>
+<div id="timeout"></div>
+<script>
+var gui = require("nw.gui");
+var win = gui.Window.get();
+
+// // handler parent event and it will block parent render process;
+// win.on("parent", function(testwin) {
+//   for (var i = 0; i < 1000; i++) {
+//     if (i === 0 || i === 999) {
+//       document.getElementById("parent").innerHTML += "<br>parent" + i + " " + Date.now();
+//     } else {
+//       document.getElementById("parent").innerHTML += "<span></span>";
+//     }
+//   }
+//   setTimeout(function() {
+//     for (var i = 0; i < 1000; i++) {
+//       if (i === 0 || i === 999) {
+//         document.getElementById("timeout").innerHTML += "<br>timeout" + i + " " + Date.now();
+//       } else {
+//         document.getElementById("timeout").innerHTML += "<span></span>";
+//       }
+//     }
+//   }, 0);
+// });
+
+// // send end event to parent window
+// win.emit("end");
+
+// render self window
+for (var i = 0; i < 1000; i++) {
+  if (i === 0 || i === 999) {
+    document.getElementById("test").innerHTML += "<br>test" + i + " " + Date.now();
+  } else {
+    document.getElementById("test").innerHTML += "<span></span>";
+  }
+}
+</script>

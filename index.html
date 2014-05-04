@@ -1,0 +1,44 @@
+<div id="test"></div>
+<div id="parent"></div>
+<div id="timeout"></div>
+<script>
+var gui = require("nw.gui");
+var win = gui.Window.get();
+
+
+var two = gui.Window.open("./two.html");
+
+// // listening end event from child window
+// two.on("end", function() {
+
+//   // send parent event 
+//   two.emit("parent", win);
+//   // try to block children 
+//   for (var i = 0; i < 3000; i++) {
+//     if (i === 0 || i === 2999) {
+//       document.getElementById("parent").innerHTML += "<br>parent" + i + " " + Date.now();
+//     } else {
+//       document.getElementById("parent").innerHTML += "<span></span>";
+//     }
+//   };
+
+// });
+
+// block two window render process;
+for (var i = 0; i < 1000; i++) {
+  if (i === 0 || i === 999) {
+    document.getElementById("test").innerHTML += "<br/>index" + i + " " + Date.now();
+  } else {
+    document.getElementById("test").innerHTML += "<span></span>";
+  }
+}
+setTimeout(function(){
+  for (var i = 0; i < 2000; i++) {
+  if (i === 0 || i === 1999) {
+    document.getElementById("timeout").innerHTML += "<br/>timeout" + i + " " + Date.now();
+  } else {
+    document.getElementById("timeout").innerHTML += "<span></span>";
+  }
+}
+},100);
+</script>
