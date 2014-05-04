@@ -6,7 +6,10 @@ var gui = require("nw.gui");
 var win = gui.Window.get();
 
 
-var two = gui.Window.open("./two.html");
+var two = gui.Window.open("./not-new-instance.html",{width:300,height:200});
+win.setAlwaysOnTop(true);
+var newInstance = gui.Window.open("./new-instance.html",{width:300,height:200,"new-instance":true});
+
 var $ = function(id){
   return document.getElementById(id);
 }
@@ -29,8 +32,8 @@ var $timeout = $("timeout");
 // });
 
 // block two window render process;
-for (var i = 0; i < 1000; i++) {
-  if (i === 0 || i === 999) {
+for (var i = 0; i < 2000; i++) {
+  if (i === 0 || i === 1999) {
     $test.innerHTML += "<br/>index" + i + " " + Date.now();
   } else {
     $test.innerHTML += "<span></span>";

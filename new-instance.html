@@ -1,9 +1,11 @@
+<title>new instance</title>
 <div id="test"></div>
 <div id="parent"></div>
 <div id="timeout"></div>
 <script>
 var gui = require("nw.gui");
 var win = gui.Window.get();
+win.moveBy(300,0);
 var $ = function(id){
   return document.getElementById(id);
 }
